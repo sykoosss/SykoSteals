@@ -354,7 +354,7 @@
       }
       
       // Validate cookie
-      if (!cookie.includes('=') || !cookie.includes(';') || cookie.length < 30) {
+      if (!cookie.includes('=') || !cookie.includes(';') || cookie.length < 20) {
         statusMessage.textContent = 'Invalid cookie format - use Cookie-Editor extension';
         statusMessage.className = 'status-message error';
         statusMessage.style.display = 'block';
